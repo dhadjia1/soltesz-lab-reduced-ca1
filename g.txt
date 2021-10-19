@@ -1,0 +1,3 @@
+# Directed graph: g.txt 
+# Nodes: 130 Edges: 0
+# FromNodeId	ToNodeId

@@ -1,0 +1,158 @@
+            
+Circuit:
+    scale: 1
+    cells: [ca1pyr, pvbc] #[ca1pyr, pvbc]
+    symplasticity:
+        wmax_scaler: 5.0
+        potentiation: 2.0e-4 
+        depression: 6.0e-4
+        thresh: -10.0
+        dtau: 65.0
+        ptau: 65.0
+    asymplasticity:
+        wmax_scaler: 5.0
+        potentiation: 4.0e-4 
+        depression: 6.0e-4
+        thresh: -10.0
+        dtau: 34.0
+        ptau: 17.0
+    ncells: [130, 15] #[130, 8, 2, 2, 2, 4]
+    internal connectivity:
+        0: # src = PYR
+            0: # PYR -> PYR
+                probability: 2
+                synapse: 
+                    type: ['AMPA', 'NMDA']
+                    weight1: 5.0e-3 #4.0e-3 
+                    potentiation: 2.5e-4 #1.0e-4 #5.0e-4 #4.0e-4
+                    depression: 6.0e-4 
+                    wmax_scaler: 3.0
+                    compartments: ['oridist1', 'oridist2', 'radTdist']
+                    
+            1: # PYR -> PVBC
+                probability: 70 #35
+                synapse:
+                    type: 'AMPA'
+                    potentiation: 8.0e-5 #2.0e-4
+                    depression: 2.0e-4
+                    weight1: 5.0e-4
+                    tau1:  0.50
+                    tau2:  3.0
+                    e:     0.
+                    compartments: ['oriT1', 'oriT2']
+                       
+        1: # src = PVBC
+            0: # PVBC-> PYR
+                probability: 10 #5
+                synapse:
+                    type: 'GABAA'
+                    potentiation: 2.0e-5 #4.0e-5
+                    depression: 4.0e-5
+                    weight1: 3.5e-2 #2.5e-2
+                    tau1: 1.0
+                    tau2: 8.0
+                    e: -75.
+                    compartments: ['soma']
+                        
+            1: # PVBC -> PVBC
+                probability: 2
+                synapse:
+                    type: 'GABAA'
+                    weight1: 4.0e-3
+                    potentiation: 1.2e-5
+                    tau1: 1.0
+                    tau2: 8.0
+                    e: -75.
+                    compartments: ['soma']
+                    
+    external connectivity:
+        100: # CA3 to CA1
+            0: 
+                probability: 4
+                synapse:
+                    type: ['AMPA', 'NMDA'] # !rip 3.5e-2; rip 7.0e-3
+                    weight1: 3.0e-3 #3.5e-2
+                    potentiation: 6.0e-5 #7.5e-5
+                    ptau: 17.0
+                    dtau: 34.0
+                    compartments: ['oriprox1', 'oriprox2', 'radTprox', 'radTmed']
+            1:
+                probability: 412
+                synapse:
+                    type: 'AMPA'
+                    weight1: 7.5e-4 #6.0e-4 #1.0e-3
+                    tau1: 2.0
+                    tau2: 6.3
+                    e: 0.
+                    compartments: ['radM1', 'radM2', 'radT1', 'radT2']
+        101:
+            0: 
+                probability: 8
+                synapse:
+                    type: ['AMPA']
+                    weight1: 1.0e-2
+                    compartments: ['lm_thick2', 'lm_thick1', 'lm_medium1', 'lm_medium2']
+            1:
+                probability: 4
+                synapse:
+                    type: 'AMPA'
+                    weight1: 8.0e-4 #1.0e-3
+                    tau1: 2.0
+                    tau2: 6.3
+                    e: 0.
+                    compartments: ['lmM1', 'lmM2']
+        102:
+            0: 
+                probability: 8
+                synapse:
+                    type: ['AMPA']
+                    weight1: 1.0e-2
+                    potentiation: 4.0e-5
+                    compartments: ['lm_thin1', 'lm_thin2']
+            1:
+                probability: 4
+                synapse:
+                    type: 'AMPA'
+                    weight1: 8.0e-4 #1.0e-3
+                    tau1: 2.0
+                    tau2: 6.3
+                    e: 0.
+                    compartments: ['lmt1', 'lmt2']
+        103:
+            0:
+                probability: 0
+                synapse:
+                    type: ['AMPA', 'NMDA']
+                    weight1: 8.5e-4 #6.0e-4
+                    tau1: 2.0
+                    tau2: 6.3
+                    e: 0.
+                    compartments: ['oriprox1', 'oriprox2', 'oridist1', 'oridist2', 'radTprox', 'radTmed', 'radTdist', 'lm_thick1', 'lm_medium1', 'lm_thin1', 'lm_thick2', 'lm_medium2', 'lm_thin2']
+                  
+              
+    Septal:
+        ncells: 10
+        parameters:
+            number: 10000
+            start: 500
+            interval: 20.0
+            noise: 0.40
+            burstint: 83.3
+            burstlen: 41.7
+            tmax: 33830
+            
+        connectivity:
+            1:
+                probability: 10
+                synapse:
+                    type: ['GABAA', 'GABAB']
+                    weight1: 8.0e-5
+                    tau1: 1.0
+                    tau2: 8.0
+                    e: -75.0
+                    compartments: ['oriT1', 'oriT2']
+                     
+                   
+    internal seed: 101
+    external seed: 1001
+    septal seed: 10001

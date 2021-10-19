@@ -1,0 +1,15 @@
+Local motif clustering. build: 12:03:51, Jun 24 2019. Time: 17:23:14 [Mar 27 2019]
+==================================================================================
+Directed graph? (-d:)=Yes
+Input graph file (-i:)=/home/dhh/soltesz-lab/losonczy-ca3-collab/v2-3232021/graph.txt
+Motif type (-m:)=m5
+Seed (-s:)=122
+alpha (-a:)=0.98
+eps (-e:)=0.0001
+Size	NodeId	Conductance
+1	122	1.0000000
+	Global minimun!!!
+	First local minimun!!!
+Size of Cluster: 1.
+
+run time: 0.17s (17:23:15)
